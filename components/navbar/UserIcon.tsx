@@ -6,5 +6,3 @@ const UserIcon = () => {
 	)
 };
 export default UserIcon;
-
-

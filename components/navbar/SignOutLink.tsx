@@ -6,5 +6,3 @@ const SignOutLink = () => {
 	)
 };
 export default SignOutLink;
-
-
