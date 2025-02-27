@@ -6,5 +6,3 @@ const NavSearch = () => {
 	)
 };
 export default NavSearch;
-
-
