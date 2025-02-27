@@ -4,8 +4,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'HomeAway Draft',
-  description: 'Feel at home, away from home.',
+  title: 'Bonfire BNB',
+  description: 'Where weary travelers find respite.',
 };
 
 export default function RootLayout({
