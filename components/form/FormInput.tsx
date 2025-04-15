@@ -9,13 +9,13 @@ type FormInputProps = {
   placeholder?: string;
 };
 
-function FormInput({
+const FormInput = ({
   label,
   name,
   type,
   defaultValue,
   placeholder,
-}: FormInputProps) {
+}: FormInputProps) => {
   return (
     <div className="mb-2">
       <Label htmlFor={name} className="capitalize">
@@ -31,6 +31,6 @@ function FormInput({
       />
     </div>
   );
-}
+};
 
 export default FormInput;
