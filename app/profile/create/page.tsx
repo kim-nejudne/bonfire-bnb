@@ -1,26 +1,33 @@
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-const createProfileAction = async (formData: FormData) => {
+import { SubmitButton } from "@/components/form/Buttons";
+import FormInput from "@/components/form/FormInput";
+import FormContainer from "@/components/form/FormContainer";
+
+const createProfileAction = async (
+  prevState: any,
+  formData: FormData
+): Promise<{ message: string }> => {
   "use server";
   const firstName = formData.get("firstName") as string;
   console.log(firstName);
+
+  return new Promise((resolve) => {
+    resolve({ message: "Profile created successfully!" });
+  });
 };
 
 const CreateProfile = () => {
   return (
     <section>
       <h1 className="text-2xl font-semibold mb-8 capitalize">new user</h1>
-      <div className="border p-8 rounded-md max-w-lg">
-        <form action={createProfileAction}>
-          <div className="mb-2">
-            <Label htmlFor="firstName">First Name</Label>
-            <Input id="firstName" name="firstName" type="text" />
+      <div className="border p-8 rounded-md">
+        <FormContainer action={createProfileAction}>
+          <div className="grid md:grid-cols-2 gap-2 mt-4">
+            <FormInput type="input" name="firstName" label="First Name" />
+            <FormInput type="input" name="lastName" label="Last Name" />
+            <FormInput type="input" name="username" label="Username" />
           </div>
-          <Button type="submit" size="lg">
-            Create Profile
-          </Button>
-        </form>
+          <SubmitButton className="mt-4" text="Create Profile" />
+        </FormContainer>
       </div>
     </section>
   );
