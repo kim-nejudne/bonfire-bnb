@@ -31,8 +31,6 @@ export const createProfileAction = async (
         hasProfile: true,
       },
     });
-
-    return { message: "Profile created successfully!" };
   } catch (error) {
     return {
       message: error instanceof Error ? error.message : "An error occurred",
