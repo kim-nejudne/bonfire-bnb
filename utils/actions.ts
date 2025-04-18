@@ -1,11 +1,28 @@
 "use server";
 
-import { profileSchema } from "./schemas";
+import { profileSchema, validateWithZodSchema } from "./schemas";
 import db from "./db";
 import { auth, clerkClient, currentUser, User } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Profile } from "@prisma/client";
+
+type ErrorResponse = {
+  message: string;
+};
+
+const renderError = (error: unknown): ErrorResponse => {
+  if (error instanceof Error) {
+    return { message: error.message };
+  }
+  if (typeof error === "string") {
+    return { message: error };
+  }
+  if (typeof error === "object" && error !== null) {
+    return { message: JSON.stringify(error) };
+  }
+  return { message: "An unknown error occurred" };
+};
 
 const getAuthUser = async (): Promise<User> => {
   const user = await currentUser();
@@ -28,7 +45,10 @@ export const createProfileAction = async (
   try {
     const user = await getAuthUser();
     const rawData = Object.fromEntries(formData.entries());
-    const validatedFields = profileSchema.parse(rawData);
+    const validatedFields = validateWithZodSchema(
+      profileSchema,
+      rawData
+    );
 
     await db.profile.create({
       data: {
@@ -45,9 +65,7 @@ export const createProfileAction = async (
       },
     });
   } catch (error) {
-    return {
-      message: error instanceof Error ? error.message : "An error occurred",
-    };
+    renderError(error);
   }
 
   redirect("/");
@@ -60,7 +78,11 @@ export const updateProfileAction = async (
   try {
     const user = await getAuthUser();
     const rawData = Object.fromEntries(formData.entries());
-    const validatedFields = profileSchema.parse(rawData);
+    const validatedFields = validateWithZodSchema(
+      profileSchema,
+      rawData
+    );
+
     const profile = await db.profile.findUnique({
       where: {
         clerkId: user.id,
@@ -84,15 +106,14 @@ export const updateProfileAction = async (
       },
     });
 
+    revalidatePath("/profile");
     return { message: "Profile updated successfully" };
   } catch (error) {
-    return {
-      message: error instanceof Error ? error.message : "An error occurred",
-    };
+    return renderError(error);
   }
 };
 
-export const fetchProfileImage = async (): Promise<string | undefined> => {
+export const fetchProfileImage = async (): Promise<string | undefined | ErrorResponse> => {
   try {
     const user = await getAuthUser();
     const profile = await db.profile.findUnique({
@@ -106,12 +127,11 @@ export const fetchProfileImage = async (): Promise<string | undefined> => {
 
     return profile?.profileImage;
   } catch (error) {
-    console.error("Error fetching profile image:", error);
-    throw error;
+    return renderError(error);
   }
 };
 
-export const fetchProfile = async (): Promise<Profile> => {
+export const fetchProfile = async (): Promise<Profile | ErrorResponse> => {
   try {
     const user = await getAuthUser();
     const profile = await db.profile.findUnique({
@@ -126,7 +146,6 @@ export const fetchProfile = async (): Promise<Profile> => {
 
     return profile;
   } catch (error) {
-    console.error("Error fetching profile:", error);
-    throw error;
+    return renderError(error);
   }
 };

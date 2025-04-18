@@ -6,3 +6,17 @@ export const profileSchema = z.object({
   lastName: z.string().min(2, { message: "Last name must be at least 2 characters" }),
   username: z.string().min(2, { message: "Username must be at least 2 characters" }),
 });
+
+export const validateWithZodSchema = <T>(
+  schema: ZodSchema<T>,
+  data: unknown
+): T => {
+  const result = schema.safeParse(data);
+
+  if (!result.success) {
+    const errors = result.error.errors.map((err) => err.message).join(",");
+    throw new Error(errors);
+  }
+
+  return result.data;
+};
