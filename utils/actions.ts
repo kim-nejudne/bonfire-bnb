@@ -39,3 +39,24 @@ export const createProfileAction = async (
 
   redirect("/");
 };
+
+export const fetchProfileImage = async (): Promise<string | undefined> => {
+  try {
+    const user = await currentUser();
+    if (!user) throw new Error("Please login to create a profile");
+
+    const profile = await db.profile.findUnique({
+      where: {
+        clerkId: user.id,
+      },
+      select: {
+        profileImage: true,
+      },
+    });
+
+    return profile?.profileImage;
+  } catch (error) {
+    console.error("Error fetching profile image:", error);
+    return undefined;
+  }
+};
