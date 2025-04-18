@@ -45,10 +45,7 @@ export const createProfileAction = async (
   try {
     const user = await getAuthUser();
     const rawData = Object.fromEntries(formData.entries());
-    const validatedFields = validateWithZodSchema(
-      profileSchema,
-      rawData
-    );
+    const validatedFields = validateWithZodSchema(profileSchema, rawData);
 
     await db.profile.create({
       data: {
@@ -78,10 +75,7 @@ export const updateProfileAction = async (
   try {
     const user = await getAuthUser();
     const rawData = Object.fromEntries(formData.entries());
-    const validatedFields = validateWithZodSchema(
-      profileSchema,
-      rawData
-    );
+    const validatedFields = validateWithZodSchema(profileSchema, rawData);
 
     const profile = await db.profile.findUnique({
       where: {
@@ -113,7 +107,9 @@ export const updateProfileAction = async (
   }
 };
 
-export const fetchProfileImage = async (): Promise<string | undefined | ErrorResponse> => {
+export const fetchProfileImage = async (): Promise<
+  string | undefined | ErrorResponse
+> => {
   try {
     const user = await getAuthUser();
     const profile = await db.profile.findUnique({
@@ -148,4 +144,13 @@ export const fetchProfile = async (): Promise<Profile | ErrorResponse> => {
   } catch (error) {
     return renderError(error);
   }
+};
+
+export const updateProfileImageAction = async (
+  prevState: any,
+  formData: FormData
+): Promise<{ message: string }> => {
+  const image = formData.get("image") as File;
+
+  return { message: "Profile image updated successfully" };
 };

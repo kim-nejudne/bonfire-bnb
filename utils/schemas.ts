@@ -20,3 +20,25 @@ export const validateWithZodSchema = <T>(
 
   return result.data;
 };
+
+const validateFile = () => {
+  const maxUploadSize = 2 * 1024 * 1024; // 2MB
+  const acceptedFileTypes = ["image/jpeg", "image/png"];
+
+  return z.instanceof(File).refine((file) => {
+    const isValidType = acceptedFileTypes.includes(file.type);
+    const isValidSize = file.size <= maxUploadSize;
+    return isValidType && isValidSize;
+  }
+  , {
+    message: `File must be one of the following types: ${acceptedFileTypes.join(", ")} and less than 2MB`,
+    params: {
+      acceptedFileTypes,
+      maxUploadSize,
+    },
+  });
+};
+
+export const imageSchema = z.object({
+  image: validateFile()
+});
