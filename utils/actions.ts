@@ -1,11 +1,12 @@
 "use server";
 
-import { profileSchema, validateWithZodSchema } from "./schemas";
+import { imageSchema, profileSchema, validateWithZodSchema } from "./schemas";
 import db from "./db";
 import { auth, clerkClient, currentUser, User } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Profile } from "@prisma/client";
+import { uploadImage } from "./supabase";
 
 type ErrorResponse = {
   message: string;
@@ -150,7 +151,30 @@ export const updateProfileImageAction = async (
   prevState: any,
   formData: FormData
 ): Promise<{ message: string }> => {
-  const image = formData.get("image") as File;
+  const user = await getAuthUser();
+  try {
+    const image = formData.get("image") as File;
+    const validatedFields = validateWithZodSchema(imageSchema, { image });
 
-  return { message: "Profile image updated successfully" };
+    if (!validatedFields) {
+      throw new Error("Invalid image");
+    }
+
+    const fullPath = await uploadImage(validatedFields.image);
+
+    await db.profile.update({
+      where: {
+        clerkId: user.id,
+      },
+      data: {
+        profileImage: fullPath,
+      },
+    });
+
+    revalidatePath("/profile");
+
+    return { message: "Profile image updated successfully" };
+  } catch (error) {
+    return renderError(error);
+  }
 };
