@@ -41,4 +41,5 @@ const CreateProperty = () => {
     </section>
   );
 };
+
 export default CreateProperty;
