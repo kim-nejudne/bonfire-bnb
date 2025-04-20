@@ -28,12 +28,9 @@ const CreateProperty = () => {
               label="Tagline (30 character limit)"
               defaultValue="Dream Getaway Awaits You Here!"
             />
-            {/* price */}
             <PriceInput />
-            {/* categories */}
             <CategoriesInput />
           </div>
-          {/* text area / description */}
           <TextAreaInput name='description' labelText='Description (10 - 1000 Words)' />
           <SubmitButton text="create rental" className="mt-12" />
         </FormContainer>
