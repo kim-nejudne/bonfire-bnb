@@ -5,13 +5,13 @@ import { LuMinus, LuPlus } from "react-icons/lu";
 import { Button } from "../ui/button";
 import { useState } from "react";
 
-function CounterInput({
+const CounterInput = ({
   detail,
   defaultValue,
 }: {
   detail: string;
   defaultValue?: number;
-}) {
+}) => {
   const [count, setCount] = useState(defaultValue || 0);
   const increaseCount = () => {
     setCount((prevCount) => prevCount + 1);
@@ -58,6 +58,6 @@ function CounterInput({
       </CardHeader>
     </Card>
   );
-}
+};
 
 export default CounterInput;
