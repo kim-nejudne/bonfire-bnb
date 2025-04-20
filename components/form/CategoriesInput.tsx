@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/select";
 
 const name = "category";
-function CategoriesInput({ defaultValue }: { defaultValue?: string }) {
+
+const CategoriesInput = ({ defaultValue }: { defaultValue?: string }) => {
   return (
     <div className="mb-2">
       <Label htmlFor={name} className="capitalize">
@@ -37,5 +38,6 @@ function CategoriesInput({ defaultValue }: { defaultValue?: string }) {
       </Select>
     </div>
   );
-}
+};
+
 export default CategoriesInput;
