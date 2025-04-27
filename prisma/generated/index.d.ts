@@ -23,6 +23,28 @@ export type Profile = $Result.DefaultSelection<Prisma.$ProfilePayload>
  * 
  */
 export type Property = $Result.DefaultSelection<Prisma.$PropertyPayload>
+/**
+ * Model Nejudne
+ * 
+ */
+export type Nejudne = $Result.DefaultSelection<Prisma.$NejudnePayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const Gender: {
+  Male: 'Male',
+  Female: 'Female'
+};
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
+
+}
+
+export type Gender = $Enums.Gender
+
+export const Gender: typeof $Enums.Gender
 
 /**
  * ##  Prisma Client ʲˢ
@@ -168,6 +190,16 @@ export class PrismaClient<
     * ```
     */
   get property(): Prisma.PropertyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.nejudne`: Exposes CRUD operations for the **Nejudne** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Nejudnes
+    * const nejudnes = await prisma.nejudne.findMany()
+    * ```
+    */
+  get nejudne(): Prisma.NejudneDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -609,7 +641,8 @@ export namespace Prisma {
 
   export const ModelName: {
     Profile: 'Profile',
-    Property: 'Property'
+    Property: 'Property',
+    Nejudne: 'Nejudne'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -628,7 +661,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "profile" | "property"
+      modelProps: "profile" | "property" | "nejudne"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -780,6 +813,80 @@ export namespace Prisma {
           }
         }
       }
+      Nejudne: {
+        payload: Prisma.$NejudnePayload<ExtArgs>
+        fields: Prisma.NejudneFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NejudneFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NejudnePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NejudneFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NejudnePayload>
+          }
+          findFirst: {
+            args: Prisma.NejudneFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NejudnePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NejudneFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NejudnePayload>
+          }
+          findMany: {
+            args: Prisma.NejudneFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NejudnePayload>[]
+          }
+          create: {
+            args: Prisma.NejudneCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NejudnePayload>
+          }
+          createMany: {
+            args: Prisma.NejudneCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NejudneCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NejudnePayload>[]
+          }
+          delete: {
+            args: Prisma.NejudneDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NejudnePayload>
+          }
+          update: {
+            args: Prisma.NejudneUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NejudnePayload>
+          }
+          deleteMany: {
+            args: Prisma.NejudneDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NejudneUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NejudneUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NejudnePayload>[]
+          }
+          upsert: {
+            args: Prisma.NejudneUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NejudnePayload>
+          }
+          aggregate: {
+            args: Prisma.NejudneAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNejudne>
+          }
+          groupBy: {
+            args: Prisma.NejudneGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NejudneGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NejudneCountArgs<ExtArgs>
+            result: $Utils.Optional<NejudneCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -866,6 +973,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     profile?: ProfileOmit
     property?: PropertyOmit
+    nejudne?: NejudneOmit
   }
 
   /* Types for Logging */
@@ -3364,6 +3472,1014 @@ export namespace Prisma {
 
 
   /**
+   * Model Nejudne
+   */
+
+  export type AggregateNejudne = {
+    _count: NejudneCountAggregateOutputType | null
+    _min: NejudneMinAggregateOutputType | null
+    _max: NejudneMaxAggregateOutputType | null
+  }
+
+  export type NejudneMinAggregateOutputType = {
+    id: string | null
+    firstName: string | null
+    birthday: Date | null
+    gender: $Enums.Gender | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NejudneMaxAggregateOutputType = {
+    id: string | null
+    firstName: string | null
+    birthday: Date | null
+    gender: $Enums.Gender | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NejudneCountAggregateOutputType = {
+    id: number
+    firstName: number
+    birthday: number
+    gender: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NejudneMinAggregateInputType = {
+    id?: true
+    firstName?: true
+    birthday?: true
+    gender?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NejudneMaxAggregateInputType = {
+    id?: true
+    firstName?: true
+    birthday?: true
+    gender?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NejudneCountAggregateInputType = {
+    id?: true
+    firstName?: true
+    birthday?: true
+    gender?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NejudneAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Nejudne to aggregate.
+     */
+    where?: NejudneWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Nejudnes to fetch.
+     */
+    orderBy?: NejudneOrderByWithRelationInput | NejudneOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NejudneWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Nejudnes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Nejudnes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Nejudnes
+    **/
+    _count?: true | NejudneCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NejudneMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NejudneMaxAggregateInputType
+  }
+
+  export type GetNejudneAggregateType<T extends NejudneAggregateArgs> = {
+        [P in keyof T & keyof AggregateNejudne]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNejudne[P]>
+      : GetScalarType<T[P], AggregateNejudne[P]>
+  }
+
+
+
+
+  export type NejudneGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NejudneWhereInput
+    orderBy?: NejudneOrderByWithAggregationInput | NejudneOrderByWithAggregationInput[]
+    by: NejudneScalarFieldEnum[] | NejudneScalarFieldEnum
+    having?: NejudneScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NejudneCountAggregateInputType | true
+    _min?: NejudneMinAggregateInputType
+    _max?: NejudneMaxAggregateInputType
+  }
+
+  export type NejudneGroupByOutputType = {
+    id: string
+    firstName: string
+    birthday: Date
+    gender: $Enums.Gender
+    createdAt: Date
+    updatedAt: Date
+    _count: NejudneCountAggregateOutputType | null
+    _min: NejudneMinAggregateOutputType | null
+    _max: NejudneMaxAggregateOutputType | null
+  }
+
+  type GetNejudneGroupByPayload<T extends NejudneGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NejudneGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NejudneGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NejudneGroupByOutputType[P]>
+            : GetScalarType<T[P], NejudneGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NejudneSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    firstName?: boolean
+    birthday?: boolean
+    gender?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["nejudne"]>
+
+  export type NejudneSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    firstName?: boolean
+    birthday?: boolean
+    gender?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["nejudne"]>
+
+  export type NejudneSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    firstName?: boolean
+    birthday?: boolean
+    gender?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["nejudne"]>
+
+  export type NejudneSelectScalar = {
+    id?: boolean
+    firstName?: boolean
+    birthday?: boolean
+    gender?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type NejudneOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "birthday" | "gender" | "createdAt" | "updatedAt", ExtArgs["result"]["nejudne"]>
+
+  export type $NejudnePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Nejudne"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      firstName: string
+      birthday: Date
+      gender: $Enums.Gender
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["nejudne"]>
+    composites: {}
+  }
+
+  type NejudneGetPayload<S extends boolean | null | undefined | NejudneDefaultArgs> = $Result.GetResult<Prisma.$NejudnePayload, S>
+
+  type NejudneCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NejudneFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NejudneCountAggregateInputType | true
+    }
+
+  export interface NejudneDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Nejudne'], meta: { name: 'Nejudne' } }
+    /**
+     * Find zero or one Nejudne that matches the filter.
+     * @param {NejudneFindUniqueArgs} args - Arguments to find a Nejudne
+     * @example
+     * // Get one Nejudne
+     * const nejudne = await prisma.nejudne.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NejudneFindUniqueArgs>(args: SelectSubset<T, NejudneFindUniqueArgs<ExtArgs>>): Prisma__NejudneClient<$Result.GetResult<Prisma.$NejudnePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Nejudne that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NejudneFindUniqueOrThrowArgs} args - Arguments to find a Nejudne
+     * @example
+     * // Get one Nejudne
+     * const nejudne = await prisma.nejudne.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NejudneFindUniqueOrThrowArgs>(args: SelectSubset<T, NejudneFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NejudneClient<$Result.GetResult<Prisma.$NejudnePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Nejudne that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NejudneFindFirstArgs} args - Arguments to find a Nejudne
+     * @example
+     * // Get one Nejudne
+     * const nejudne = await prisma.nejudne.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NejudneFindFirstArgs>(args?: SelectSubset<T, NejudneFindFirstArgs<ExtArgs>>): Prisma__NejudneClient<$Result.GetResult<Prisma.$NejudnePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Nejudne that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NejudneFindFirstOrThrowArgs} args - Arguments to find a Nejudne
+     * @example
+     * // Get one Nejudne
+     * const nejudne = await prisma.nejudne.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NejudneFindFirstOrThrowArgs>(args?: SelectSubset<T, NejudneFindFirstOrThrowArgs<ExtArgs>>): Prisma__NejudneClient<$Result.GetResult<Prisma.$NejudnePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Nejudnes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NejudneFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Nejudnes
+     * const nejudnes = await prisma.nejudne.findMany()
+     * 
+     * // Get first 10 Nejudnes
+     * const nejudnes = await prisma.nejudne.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const nejudneWithIdOnly = await prisma.nejudne.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NejudneFindManyArgs>(args?: SelectSubset<T, NejudneFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NejudnePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Nejudne.
+     * @param {NejudneCreateArgs} args - Arguments to create a Nejudne.
+     * @example
+     * // Create one Nejudne
+     * const Nejudne = await prisma.nejudne.create({
+     *   data: {
+     *     // ... data to create a Nejudne
+     *   }
+     * })
+     * 
+     */
+    create<T extends NejudneCreateArgs>(args: SelectSubset<T, NejudneCreateArgs<ExtArgs>>): Prisma__NejudneClient<$Result.GetResult<Prisma.$NejudnePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Nejudnes.
+     * @param {NejudneCreateManyArgs} args - Arguments to create many Nejudnes.
+     * @example
+     * // Create many Nejudnes
+     * const nejudne = await prisma.nejudne.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NejudneCreateManyArgs>(args?: SelectSubset<T, NejudneCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Nejudnes and returns the data saved in the database.
+     * @param {NejudneCreateManyAndReturnArgs} args - Arguments to create many Nejudnes.
+     * @example
+     * // Create many Nejudnes
+     * const nejudne = await prisma.nejudne.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Nejudnes and only return the `id`
+     * const nejudneWithIdOnly = await prisma.nejudne.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NejudneCreateManyAndReturnArgs>(args?: SelectSubset<T, NejudneCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NejudnePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Nejudne.
+     * @param {NejudneDeleteArgs} args - Arguments to delete one Nejudne.
+     * @example
+     * // Delete one Nejudne
+     * const Nejudne = await prisma.nejudne.delete({
+     *   where: {
+     *     // ... filter to delete one Nejudne
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NejudneDeleteArgs>(args: SelectSubset<T, NejudneDeleteArgs<ExtArgs>>): Prisma__NejudneClient<$Result.GetResult<Prisma.$NejudnePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Nejudne.
+     * @param {NejudneUpdateArgs} args - Arguments to update one Nejudne.
+     * @example
+     * // Update one Nejudne
+     * const nejudne = await prisma.nejudne.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NejudneUpdateArgs>(args: SelectSubset<T, NejudneUpdateArgs<ExtArgs>>): Prisma__NejudneClient<$Result.GetResult<Prisma.$NejudnePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Nejudnes.
+     * @param {NejudneDeleteManyArgs} args - Arguments to filter Nejudnes to delete.
+     * @example
+     * // Delete a few Nejudnes
+     * const { count } = await prisma.nejudne.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NejudneDeleteManyArgs>(args?: SelectSubset<T, NejudneDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Nejudnes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NejudneUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Nejudnes
+     * const nejudne = await prisma.nejudne.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NejudneUpdateManyArgs>(args: SelectSubset<T, NejudneUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Nejudnes and returns the data updated in the database.
+     * @param {NejudneUpdateManyAndReturnArgs} args - Arguments to update many Nejudnes.
+     * @example
+     * // Update many Nejudnes
+     * const nejudne = await prisma.nejudne.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Nejudnes and only return the `id`
+     * const nejudneWithIdOnly = await prisma.nejudne.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NejudneUpdateManyAndReturnArgs>(args: SelectSubset<T, NejudneUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NejudnePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Nejudne.
+     * @param {NejudneUpsertArgs} args - Arguments to update or create a Nejudne.
+     * @example
+     * // Update or create a Nejudne
+     * const nejudne = await prisma.nejudne.upsert({
+     *   create: {
+     *     // ... data to create a Nejudne
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Nejudne we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NejudneUpsertArgs>(args: SelectSubset<T, NejudneUpsertArgs<ExtArgs>>): Prisma__NejudneClient<$Result.GetResult<Prisma.$NejudnePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Nejudnes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NejudneCountArgs} args - Arguments to filter Nejudnes to count.
+     * @example
+     * // Count the number of Nejudnes
+     * const count = await prisma.nejudne.count({
+     *   where: {
+     *     // ... the filter for the Nejudnes we want to count
+     *   }
+     * })
+    **/
+    count<T extends NejudneCountArgs>(
+      args?: Subset<T, NejudneCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NejudneCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Nejudne.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NejudneAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NejudneAggregateArgs>(args: Subset<T, NejudneAggregateArgs>): Prisma.PrismaPromise<GetNejudneAggregateType<T>>
+
+    /**
+     * Group by Nejudne.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NejudneGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NejudneGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NejudneGroupByArgs['orderBy'] }
+        : { orderBy?: NejudneGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NejudneGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNejudneGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Nejudne model
+   */
+  readonly fields: NejudneFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Nejudne.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NejudneClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Nejudne model
+   */
+  interface NejudneFieldRefs {
+    readonly id: FieldRef<"Nejudne", 'String'>
+    readonly firstName: FieldRef<"Nejudne", 'String'>
+    readonly birthday: FieldRef<"Nejudne", 'DateTime'>
+    readonly gender: FieldRef<"Nejudne", 'Gender'>
+    readonly createdAt: FieldRef<"Nejudne", 'DateTime'>
+    readonly updatedAt: FieldRef<"Nejudne", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Nejudne findUnique
+   */
+  export type NejudneFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+    /**
+     * Filter, which Nejudne to fetch.
+     */
+    where: NejudneWhereUniqueInput
+  }
+
+  /**
+   * Nejudne findUniqueOrThrow
+   */
+  export type NejudneFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+    /**
+     * Filter, which Nejudne to fetch.
+     */
+    where: NejudneWhereUniqueInput
+  }
+
+  /**
+   * Nejudne findFirst
+   */
+  export type NejudneFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+    /**
+     * Filter, which Nejudne to fetch.
+     */
+    where?: NejudneWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Nejudnes to fetch.
+     */
+    orderBy?: NejudneOrderByWithRelationInput | NejudneOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Nejudnes.
+     */
+    cursor?: NejudneWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Nejudnes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Nejudnes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Nejudnes.
+     */
+    distinct?: NejudneScalarFieldEnum | NejudneScalarFieldEnum[]
+  }
+
+  /**
+   * Nejudne findFirstOrThrow
+   */
+  export type NejudneFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+    /**
+     * Filter, which Nejudne to fetch.
+     */
+    where?: NejudneWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Nejudnes to fetch.
+     */
+    orderBy?: NejudneOrderByWithRelationInput | NejudneOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Nejudnes.
+     */
+    cursor?: NejudneWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Nejudnes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Nejudnes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Nejudnes.
+     */
+    distinct?: NejudneScalarFieldEnum | NejudneScalarFieldEnum[]
+  }
+
+  /**
+   * Nejudne findMany
+   */
+  export type NejudneFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+    /**
+     * Filter, which Nejudnes to fetch.
+     */
+    where?: NejudneWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Nejudnes to fetch.
+     */
+    orderBy?: NejudneOrderByWithRelationInput | NejudneOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Nejudnes.
+     */
+    cursor?: NejudneWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Nejudnes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Nejudnes.
+     */
+    skip?: number
+    distinct?: NejudneScalarFieldEnum | NejudneScalarFieldEnum[]
+  }
+
+  /**
+   * Nejudne create
+   */
+  export type NejudneCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Nejudne.
+     */
+    data: XOR<NejudneCreateInput, NejudneUncheckedCreateInput>
+  }
+
+  /**
+   * Nejudne createMany
+   */
+  export type NejudneCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Nejudnes.
+     */
+    data: NejudneCreateManyInput | NejudneCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Nejudne createManyAndReturn
+   */
+  export type NejudneCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+    /**
+     * The data used to create many Nejudnes.
+     */
+    data: NejudneCreateManyInput | NejudneCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Nejudne update
+   */
+  export type NejudneUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Nejudne.
+     */
+    data: XOR<NejudneUpdateInput, NejudneUncheckedUpdateInput>
+    /**
+     * Choose, which Nejudne to update.
+     */
+    where: NejudneWhereUniqueInput
+  }
+
+  /**
+   * Nejudne updateMany
+   */
+  export type NejudneUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Nejudnes.
+     */
+    data: XOR<NejudneUpdateManyMutationInput, NejudneUncheckedUpdateManyInput>
+    /**
+     * Filter which Nejudnes to update
+     */
+    where?: NejudneWhereInput
+    /**
+     * Limit how many Nejudnes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Nejudne updateManyAndReturn
+   */
+  export type NejudneUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+    /**
+     * The data used to update Nejudnes.
+     */
+    data: XOR<NejudneUpdateManyMutationInput, NejudneUncheckedUpdateManyInput>
+    /**
+     * Filter which Nejudnes to update
+     */
+    where?: NejudneWhereInput
+    /**
+     * Limit how many Nejudnes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Nejudne upsert
+   */
+  export type NejudneUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Nejudne to update in case it exists.
+     */
+    where: NejudneWhereUniqueInput
+    /**
+     * In case the Nejudne found by the `where` argument doesn't exist, create a new Nejudne with this data.
+     */
+    create: XOR<NejudneCreateInput, NejudneUncheckedCreateInput>
+    /**
+     * In case the Nejudne was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NejudneUpdateInput, NejudneUncheckedUpdateInput>
+  }
+
+  /**
+   * Nejudne delete
+   */
+  export type NejudneDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+    /**
+     * Filter which Nejudne to delete.
+     */
+    where: NejudneWhereUniqueInput
+  }
+
+  /**
+   * Nejudne deleteMany
+   */
+  export type NejudneDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Nejudnes to delete
+     */
+    where?: NejudneWhereInput
+    /**
+     * Limit how many Nejudnes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Nejudne without action
+   */
+  export type NejudneDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Nejudne
+     */
+    select?: NejudneSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Nejudne
+     */
+    omit?: NejudneOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3412,6 +4528,18 @@ export namespace Prisma {
   };
 
   export type PropertyScalarFieldEnum = (typeof PropertyScalarFieldEnum)[keyof typeof PropertyScalarFieldEnum]
+
+
+  export const NejudneScalarFieldEnum: {
+    id: 'id',
+    firstName: 'firstName',
+    birthday: 'birthday',
+    gender: 'gender',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NejudneScalarFieldEnum = (typeof NejudneScalarFieldEnum)[keyof typeof NejudneScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3474,6 +4602,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Gender'
+   */
+  export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
+    
+
+
+  /**
+   * Reference to a field of type 'Gender[]'
+   */
+  export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
     
 
 
@@ -3679,6 +4821,63 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Property"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Property"> | Date | string
     profileId?: StringWithAggregatesFilter<"Property"> | string
+  }
+
+  export type NejudneWhereInput = {
+    AND?: NejudneWhereInput | NejudneWhereInput[]
+    OR?: NejudneWhereInput[]
+    NOT?: NejudneWhereInput | NejudneWhereInput[]
+    id?: StringFilter<"Nejudne"> | string
+    firstName?: StringFilter<"Nejudne"> | string
+    birthday?: DateTimeFilter<"Nejudne"> | Date | string
+    gender?: EnumGenderFilter<"Nejudne"> | $Enums.Gender
+    createdAt?: DateTimeFilter<"Nejudne"> | Date | string
+    updatedAt?: DateTimeFilter<"Nejudne"> | Date | string
+  }
+
+  export type NejudneOrderByWithRelationInput = {
+    id?: SortOrder
+    firstName?: SortOrder
+    birthday?: SortOrder
+    gender?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NejudneWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: NejudneWhereInput | NejudneWhereInput[]
+    OR?: NejudneWhereInput[]
+    NOT?: NejudneWhereInput | NejudneWhereInput[]
+    firstName?: StringFilter<"Nejudne"> | string
+    birthday?: DateTimeFilter<"Nejudne"> | Date | string
+    gender?: EnumGenderFilter<"Nejudne"> | $Enums.Gender
+    createdAt?: DateTimeFilter<"Nejudne"> | Date | string
+    updatedAt?: DateTimeFilter<"Nejudne"> | Date | string
+  }, "id">
+
+  export type NejudneOrderByWithAggregationInput = {
+    id?: SortOrder
+    firstName?: SortOrder
+    birthday?: SortOrder
+    gender?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: NejudneCountOrderByAggregateInput
+    _max?: NejudneMaxOrderByAggregateInput
+    _min?: NejudneMinOrderByAggregateInput
+  }
+
+  export type NejudneScalarWhereWithAggregatesInput = {
+    AND?: NejudneScalarWhereWithAggregatesInput | NejudneScalarWhereWithAggregatesInput[]
+    OR?: NejudneScalarWhereWithAggregatesInput[]
+    NOT?: NejudneScalarWhereWithAggregatesInput | NejudneScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Nejudne"> | string
+    firstName?: StringWithAggregatesFilter<"Nejudne"> | string
+    birthday?: DateTimeWithAggregatesFilter<"Nejudne"> | Date | string
+    gender?: EnumGenderWithAggregatesFilter<"Nejudne"> | $Enums.Gender
+    createdAt?: DateTimeWithAggregatesFilter<"Nejudne"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Nejudne"> | Date | string
   }
 
   export type ProfileCreateInput = {
@@ -3901,6 +5100,69 @@ export namespace Prisma {
     profileId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type NejudneCreateInput = {
+    id?: string
+    firstName: string
+    birthday: Date | string
+    gender: $Enums.Gender
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NejudneUncheckedCreateInput = {
+    id?: string
+    firstName: string
+    birthday: Date | string
+    gender: $Enums.Gender
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NejudneUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    birthday?: DateTimeFieldUpdateOperationsInput | Date | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NejudneUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    birthday?: DateTimeFieldUpdateOperationsInput | Date | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NejudneCreateManyInput = {
+    id?: string
+    firstName: string
+    birthday: Date | string
+    gender: $Enums.Gender
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NejudneUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    birthday?: DateTimeFieldUpdateOperationsInput | Date | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NejudneUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    birthday?: DateTimeFieldUpdateOperationsInput | Date | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -4110,6 +5372,50 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type EnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  }
+
+  export type NejudneCountOrderByAggregateInput = {
+    id?: SortOrder
+    firstName?: SortOrder
+    birthday?: SortOrder
+    gender?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NejudneMaxOrderByAggregateInput = {
+    id?: SortOrder
+    firstName?: SortOrder
+    birthday?: SortOrder
+    gender?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NejudneMinOrderByAggregateInput = {
+    id?: SortOrder
+    firstName?: SortOrder
+    birthday?: SortOrder
+    gender?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
+  }
+
   export type PropertyCreateNestedManyWithoutProfileInput = {
     create?: XOR<PropertyCreateWithoutProfileInput, PropertyUncheckedCreateWithoutProfileInput> | PropertyCreateWithoutProfileInput[] | PropertyUncheckedCreateWithoutProfileInput[]
     connectOrCreate?: PropertyCreateOrConnectWithoutProfileInput | PropertyCreateOrConnectWithoutProfileInput[]
@@ -4180,6 +5486,10 @@ export namespace Prisma {
     upsert?: ProfileUpsertWithoutPropertiesInput
     connect?: ProfileWhereUniqueInput
     update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutPropertiesInput, ProfileUpdateWithoutPropertiesInput>, ProfileUncheckedUpdateWithoutPropertiesInput>
+  }
+
+  export type EnumGenderFieldUpdateOperationsInput = {
+    set?: $Enums.Gender
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4274,6 +5584,23 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  }
+
+  export type NestedEnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
   export type PropertyCreateWithoutProfileInput = {

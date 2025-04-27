@@ -148,6 +148,15 @@ exports.Prisma.PropertyScalarFieldEnum = {
   profileId: 'profileId'
 };
 
+exports.Prisma.NejudneScalarFieldEnum = {
+  id: 'id',
+  firstName: 'firstName',
+  birthday: 'birthday',
+  gender: 'gender',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -157,11 +166,15 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-
+exports.Gender = exports.$Enums.Gender = {
+  Male: 'Male',
+  Female: 'Female'
+};
 
 exports.Prisma.ModelName = {
   Profile: 'Profile',
-  Property: 'Property'
+  Property: 'Property',
+  Nejudne: 'Nejudne'
 };
 
 /**
