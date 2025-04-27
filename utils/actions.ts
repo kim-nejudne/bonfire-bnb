@@ -10,8 +10,8 @@ import db from "./db";
 import { auth, clerkClient, currentUser, User } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { Profile } from "@prisma/client";
 import { uploadImage } from "./supabase";
+import { Profile } from "@/prisma/generated";
 
 type ErrorResponse = {
   message: string;
