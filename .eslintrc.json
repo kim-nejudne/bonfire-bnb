@@ -13,7 +13,7 @@
     "semi": ["error", "always"],
     "quotes": ["error", "double"],
     "no-unused-vars": ["warn"],
-    "no-console": "off",
+    "no-console": 1,
     "indent": ["error", 2]
   }
 }
