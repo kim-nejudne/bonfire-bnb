@@ -49,7 +49,12 @@ export const createProfileAction = async (
   formData: FormData
 ): Promise<{ message: string }> => {
   try {
-    const user = await getAuthUser();
+    const user = await currentUser();
+
+    if (!user) {
+      throw new Error("User not authenticated");
+    }
+
     const rawData = Object.fromEntries(formData.entries());
     const validatedFields = validateWithZodSchema(profileSchema, rawData);
 
@@ -192,7 +197,6 @@ export const createPropertyAction = async (
   try {
     const rawData = Object.fromEntries(formData);
     const file = formData.get("image") as File;
-
     const validatedFields = validateWithZodSchema(propertySchema, rawData);
     const validatedFile = validateWithZodSchema(imageSchema, { image: file });
     const fullPath = await uploadImage(validatedFile.image);

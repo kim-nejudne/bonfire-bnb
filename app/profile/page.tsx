@@ -6,7 +6,7 @@ import {
   updateProfileAction,
   updateProfileImageAction,
 } from "@/utils/actions";
-import { Profile } from "@prisma/client";
+import { Profile } from "@/prisma/generated";
 import ImageInputContainer from "@/components/form/ImageInputContainer";
 
 const ProfilePage = async () => {
