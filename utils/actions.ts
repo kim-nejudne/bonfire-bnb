@@ -7,7 +7,7 @@ import {
   validateWithZodSchema,
 } from "./schemas";
 import db from "./db";
-import { auth, clerkClient, currentUser, User } from "@clerk/nextjs/server";
+import { clerkClient, currentUser, User } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { uploadImage } from "./supabase";
@@ -212,4 +212,49 @@ export const createPropertyAction = async (
     return renderError(error);
   }
   redirect("/");
+};
+
+export const fetchProperties = async ({
+  search = "",
+  category,
+}: {
+  search?: string;
+  category?: string;
+}): Promise<{ id: string; name: string; image: string }[] | ErrorResponse> => {
+  try {
+    const properties = await db.property.findMany({
+      where: {
+        category,
+        OR: [
+          {
+            name: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+          {
+            tagline: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+        ],
+      },
+      select: {
+        id: true,
+        name: true,
+        image: true,
+        tagline: true,
+        country: true,
+        price: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return properties;
+  } catch (error) {
+    return renderError(error);
+  }
 };
