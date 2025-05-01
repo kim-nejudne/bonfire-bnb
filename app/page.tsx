@@ -6,10 +6,6 @@ const HomePage = ({
 }: {
   searchParams: { category?: string; search?: string };
 }) => {
-  console.log("*".repeat(80));
-  console.log("searchParams", searchParams);
-  console.log("*".repeat(80));
-
   return (
     <section>
       <CategoriesList
