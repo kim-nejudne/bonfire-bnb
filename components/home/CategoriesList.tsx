@@ -33,6 +33,7 @@ const CategoriesList = ({
           );
         })}
       </div>
+      <ScrollBar orientation='horizontal' />
     </ScrollArea>
   );
 };
