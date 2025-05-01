@@ -1,10 +1,26 @@
-"use client";
+import CategoriesList from "@/components/home/CategoriesList";
+import PropertiesContainer from "@/components/home/PropertiesContainer";
 
-const HomePage = () => {
+const HomePage = ({
+  searchParams,
+}: {
+  searchParams: { category?: string; search?: string };
+}) => {
+  console.log("*".repeat(80));
+  console.log("searchParams", searchParams);
+  console.log("*".repeat(80));
+
   return (
-    <div>
-      <h1 className='text-3xl'>HomeAway Project - Starter</h1>
-    </div>
+    <section>
+      <CategoriesList
+        category={searchParams.category}
+        search={searchParams.search}
+      />
+      <PropertiesContainer
+        category={searchParams.category}
+        search={searchParams.search}
+      />
+    </section>
   );
 };
 export default HomePage;
