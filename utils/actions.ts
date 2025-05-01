@@ -12,10 +12,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { uploadImage } from "./supabase";
 import { Profile } from "@/prisma/generated";
-
-type ErrorResponse = {
-  message: string;
-};
+import { ErrorResponse, PropertyCardProps } from "./types";
 
 const renderError = (error: unknown): ErrorResponse => {
   if (error instanceof Error) {
@@ -220,7 +217,7 @@ export const fetchProperties = async ({
 }: {
   search?: string;
   category?: string;
-}): Promise<{ id: string; name: string; image: string }[] | ErrorResponse> => {
+}): Promise<PropertyCardProps[] | ErrorResponse> => {
   try {
     const properties = await db.property.findMany({
       where: {
