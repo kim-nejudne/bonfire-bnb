@@ -16,11 +16,6 @@ const PropertiesContainer = async ({
     search,
   });
 
-  console.log("*".repeat(80));
-  console.log("properties", properties);
-  console.log("*".repeat(80));
-
-
   if (!Array.isArray(properties) && "message" in properties) {
     return (
       <EmptyList
