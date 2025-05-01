@@ -41,8 +41,6 @@ const PropertiesContainer = async ({
     );
   }
 
-  return <div>Properties go here</div>;
-
-  // return <PropertiesList properties={properties} />;
+  return <PropertiesList properties={properties} />;
 };
 export default PropertiesContainer;
