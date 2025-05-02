@@ -6,6 +6,7 @@ import ShareButton from "../ShareButton";
 import ImageContainer from "../ImageContainer";
 import PropertyRating from "@/components/card/PropertyRating";
 import BookingCalendar from "../booking/BookingCalendar";
+import PropertyDetails from "../PropertyDetails";
 
 const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
   const property = await fetchPropertyDetails(params.id);
@@ -32,6 +33,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
           <div className="flex gap-x-4 items-center">
             <h1 className="text-xl font-bold">{property.name}</h1>
             <PropertyRating inPage propertyId={property.id} />
+            <PropertyDetails details={details} />
           </div>
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">

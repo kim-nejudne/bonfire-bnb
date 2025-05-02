@@ -15,3 +15,12 @@ export type PropertyCardProps = {
   country: string;
   price: number;
 };
+
+export type PropertyDetailsProps = {
+  details: {
+    bedrooms: number;
+    baths: number;
+    guests: number;
+    beds: number;
+  };
+};
