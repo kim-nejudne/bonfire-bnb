@@ -8,6 +8,9 @@ import PropertyRating from "@/components/card/PropertyRating";
 import BookingCalendar from "../booking/BookingCalendar";
 import PropertyDetails from "../../../components/properties/PropertyDetails";
 import UserInfo from "@/components/properties/UserInfo";
+import { Separator } from "@/components/ui/separator";
+import Description from "@/components/properties/Description";
+import Amenities from "@/components/properties/Amenities";
 
 const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
   const property = await fetchPropertyDetails(params.id);
@@ -21,6 +24,8 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
     guests,
     image,
     name,
+    description,
+    amenities
     profile: { firstName, profileImage },
   } = property;
 
@@ -45,9 +50,11 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
             <PropertyDetails details={details} />
           </div>
           <UserInfo profile={{ firstName, profileImage }} />
+          <Separator className="mt-4" />
+          <Description description={description} />
+          <Amenities amenities={amenities} />
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
-          {/* calendar */}
           <BookingCalendar />
         </div>
       </section>
