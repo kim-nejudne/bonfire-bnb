@@ -7,7 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-function BreadCrumbs({ name }: { name: string }) {
+const BreadCrumbs = ({ name }: { name: string }) => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -21,5 +21,6 @@ function BreadCrumbs({ name }: { name: string }) {
       </BreadcrumbList>
     </Breadcrumb>
   );
-}
+};
+
 export default BreadCrumbs;
