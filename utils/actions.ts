@@ -11,8 +11,8 @@ import { clerkClient, currentUser, User } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { uploadImage } from "./supabase";
-import { Profile } from "@/prisma/generated";
 import { ErrorResponse, PropertyCardProps } from "./types";
+import { Profile } from "@/prisma/generated/client";
 
 const renderError = (error: unknown): ErrorResponse => {
   if (error instanceof Error) {
