@@ -24,6 +24,11 @@ const NavSearch = () => {
     replace(`${pathname}?${params.toString()}`);
   }, 300);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    handleSearch(e.target.value);
+  };
+
   useEffect(() => {
     if (!searchParams.get("search")) {
       setSearch("");
@@ -35,10 +40,7 @@ const NavSearch = () => {
       type="search"
       placeholder="find a property..."
       className="max-w-xs dark:bg-muted "
-      onChange={(e) => {
-        setSearch(e.target.value);
-        handleSearch(e.target.value);
-      }}
+      onChange={handleChange}
       value={search}
     />
   );
