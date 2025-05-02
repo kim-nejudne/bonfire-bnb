@@ -24,3 +24,10 @@ export type PropertyDetailsProps = {
     beds: number;
   };
 };
+
+export type UserInfoProps = {
+  profile: {
+    profileImage: string;
+    firstName: string;
+  };
+};

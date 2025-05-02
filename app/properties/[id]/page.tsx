@@ -1,19 +1,28 @@
 import { fetchPropertyDetails } from "@/utils/actions";
 import { redirect } from "next/navigation";
-import BreadCrumbs from "../BreadCrumbs";
+import BreadCrumbs from "../../../components/properties/BreadCrumbs";
 import FavoriteToggleButton from "@/components/card/FavoriteToggleButton";
-import ShareButton from "../ShareButton";
-import ImageContainer from "../ImageContainer";
+import ShareButton from "../../../components/properties/ShareButton";
+import ImageContainer from "../../../components/properties/ImageContainer";
 import PropertyRating from "@/components/card/PropertyRating";
 import BookingCalendar from "../booking/BookingCalendar";
-import PropertyDetails from "../PropertyDetails";
+import PropertyDetails from "../../../components/properties/PropertyDetails";
+import UserInfo from "@/components/properties/UserInfo";
 
 const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
   const property = await fetchPropertyDetails(params.id);
 
   if (!property) redirect("/");
 
-  const { baths, bedrooms, beds, guests, image, name } = property;
+  const {
+    baths,
+    bedrooms,
+    beds,
+    guests,
+    image,
+    name,
+    profile: { firstName, profileImage },
+  } = property;
 
   const details = { baths, bedrooms, beds, guests };
 
@@ -35,6 +44,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
             <PropertyRating inPage propertyId={property.id} />
             <PropertyDetails details={details} />
           </div>
+          <UserInfo profile={{ firstName, profileImage }} />
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
           {/* calendar */}
