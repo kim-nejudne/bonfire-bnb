@@ -25,7 +25,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
     image,
     name,
     description,
-    amenities
+    amenities,
     profile: { firstName, profileImage },
   } = property;
 
