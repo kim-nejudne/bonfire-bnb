@@ -12,7 +12,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { uploadImage } from "./supabase";
 import { ErrorResponse, PropertyCardProps } from "./types";
-import { Profile } from "@/prisma/generated/client";
+import { Profile } from "@/prisma/generated";
 
 const renderError = (error: unknown): ErrorResponse => {
   if (error instanceof Error) {
