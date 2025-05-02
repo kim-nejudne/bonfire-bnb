@@ -255,3 +255,28 @@ export const fetchProperties = async ({
     return renderError(error);
   }
 };
+
+export const fetchFavoriteId = async ({
+  propertyId,
+}: {
+  propertyId: string;
+}) => {
+  const user = await getAuthUser();
+
+  const favorite = await db.favorite.findFirst({
+    where: {
+      propertyId,
+      profileId: user.id,
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  return favorite?.id || null;
+};
+
+// TODO: implement toggle favorite action
+export const toggleFavoriteAction = async () => {
+  return { message: "toggle favorite" };
+};
