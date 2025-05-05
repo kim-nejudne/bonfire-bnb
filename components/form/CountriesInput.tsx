@@ -10,7 +10,7 @@ import {
 
 const name = "country";
 
-function CountriesInput({ defaultValue }: { defaultValue?: string }) {
+const CountriesInput = ({ defaultValue }: { defaultValue?: string }) => {
   return (
     <div className="mb-2">
       <Label htmlFor={name} className="capitalize">
@@ -38,6 +38,6 @@ function CountriesInput({ defaultValue }: { defaultValue?: string }) {
       </Select>
     </div>
   );
-}
+};
 
 export default CountriesInput;

@@ -13,22 +13,24 @@ export const metadata: Metadata = {
   description: "Where weary travelers find respite.",
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
     <ClerkProvider>
-      <html lang='en' suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
           <Providers>
             <Navbar />
-            <main className='container py-10'>{children}</main>
+            <main className="container py-10">{children}</main>
           </Providers>
           <Toaster />
         </body>
       </html>
     </ClerkProvider>
   );
-}
+};
+
+export default RootLayout;

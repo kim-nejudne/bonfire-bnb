@@ -1,7 +1,7 @@
 import { FaStar } from "react-icons/fa";
 
 const PropertyRating = async ({
-  propertyId,
+  // propertyId,
   inPage,
 }: {
   propertyId: string;
