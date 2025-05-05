@@ -1,9 +1,10 @@
 "use client";
+
 import { useState } from "react";
 import { conservativeAmenities, Amenity } from "@/utils/amenities";
 import { Checkbox } from "@/components/ui/checkbox";
 
-function AmenitiesInput({ defaultValue }: { defaultValue?: Amenity[] }) {
+const AmenitiesInput = ({ defaultValue }: { defaultValue?: Amenity[] }) => {
   const [selectedAmenities, setSelectedAmenities] = useState<Amenity[]>(
     defaultValue || conservativeAmenities
   );
@@ -46,5 +47,6 @@ function AmenitiesInput({ defaultValue }: { defaultValue?: Amenity[] }) {
       </div>
     </section>
   );
-}
+};
+
 export default AmenitiesInput;
