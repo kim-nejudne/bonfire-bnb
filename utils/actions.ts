@@ -326,9 +326,9 @@ export const fetchFavorites = async (): Promise<PropertyCardProps[]> => {
     },
   });
 
-  return favorites.map((favorite: {
-    property: PropertyCardProps;
-  }) => favorite.property);
+  return favorites.map(
+    (favorite: { property: PropertyCardProps }) => favorite.property
+  );
 };
 
 export const fetchPropertyDetails = (id: string) => {
@@ -340,4 +340,20 @@ export const fetchPropertyDetails = (id: string) => {
       profile: true,
     },
   });
+};
+
+export const createReviewAction = async () => {
+  return { message: "create review" };
+};
+
+export const fetchPropertyReviews = async () => {
+  return { message: "fetch reviews" };
+};
+
+export const fetchPropertyReviewsByUser = async () => {
+  return { message: "fetch user reviews" };
+};
+
+export const deleteReviewAction = async () => {
+  return { message: "delete  reviews" };
 };
