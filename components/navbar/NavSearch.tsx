@@ -38,7 +38,7 @@ const NavSearch = () => {
     <Input
       type="search"
       placeholder="find a property..."
-      className="max-w-xs dark:bg-muted "
+      className="max-w-xs dark:bg-muted border border-dashed border-red-500 "
       onChange={handleChange}
       value={search}
     />
