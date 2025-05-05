@@ -159,6 +159,16 @@ exports.Prisma.FavoriteScalarFieldEnum = {
   propertyId: 'propertyId'
 };
 
+exports.Prisma.ReviewScalarFieldEnum = {
+  id: 'id',
+  profileId: 'profileId',
+  propertyId: 'propertyId',
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -173,7 +183,8 @@ exports.Prisma.QueryMode = {
 exports.Prisma.ModelName = {
   Profile: 'Profile',
   Property: 'Property',
-  Favorite: 'Favorite'
+  Favorite: 'Favorite',
+  Review: 'Review'
 };
 
 /**
