@@ -339,6 +339,7 @@ export const fetchPropertyDetails = (id: string) => {
     },
     include: {
       profile: true,
+      bookings: true,
     },
   });
 };
