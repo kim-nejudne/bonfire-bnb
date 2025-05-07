@@ -473,9 +473,11 @@ export const createBookingAction = async (prevState: {
     where: { id: propertyId },
     select: { price: true },
   });
+
   if (!property) {
     return { message: "Property not found" };
   }
+
   const { orderTotal, totalNights } = calculateTotals({
     checkIn,
     checkOut,

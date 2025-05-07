@@ -47,14 +47,18 @@ export const generateDateRange = (range: DateRange | undefined): string[] => {
 export const generateDisabledDates = (
   disabledDays: DateRange[]
 ): { [key: string]: boolean } => {
-  if (disabledDays.length === 0) return {};
+  if (disabledDays.length === 0) {
+    return {};
+  }
 
   const disabledDates: { [key: string]: boolean } = {};
   const today = new Date();
   today.setHours(0, 0, 0, 0); // set time to 00:00:00 to compare only the date part
 
   disabledDays.forEach((range) => {
-    if (!range.from || !range.to) return;
+    if (!range.from || !range.to) {
+      return;
+    }
 
     let currentDate = new Date(range.from);
     const endDate = new Date(range.to);
