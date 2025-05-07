@@ -4,6 +4,15 @@ import { Separator } from "@/components/ui/separator";
 import { useProperty } from "@/utils/store";
 import { formatCurrency } from "@/utils/format";
 
+const FormRow = ({ label, amount }: { label: string; amount: number }) => {
+  return (
+    <p className="flex justify-between text-sm mb-2">
+      <span>{label}</span>
+      <span>{formatCurrency(amount)}</span>
+    </p>
+  );
+};
+
 const BookingForm = () => {
   const { range, price } = useProperty((state) => state);
   const checkIn = range?.from as Date;
@@ -15,6 +24,7 @@ const BookingForm = () => {
       checkOut,
       price,
     });
+
   return (
     <Card className="p-8 mb-4">
       <CardTitle className="mb-8">Summary </CardTitle>
@@ -27,15 +37,6 @@ const BookingForm = () => {
         <FormRow label="Booking Total" amount={orderTotal} />
       </CardTitle>
     </Card>
-  );
-};
-
-const FormRow = ({ label, amount }: { label: string; amount: number }) => {
-  return (
-    <p className="flex justify-between text-sm mb-2">
-      <span>{label}</span>
-      <span>{formatCurrency(amount)}</span>
-    </p>
   );
 };
 
