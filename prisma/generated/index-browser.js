@@ -169,6 +169,19 @@ exports.Prisma.ReviewScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.BookingScalarFieldEnum = {
+  id: 'id',
+  profileId: 'profileId',
+  propertyId: 'propertyId',
+  orderTotal: 'orderTotal',
+  totalNights: 'totalNights',
+  checkIn: 'checkIn',
+  checkOut: 'checkOut',
+  paymentStatus: 'paymentStatus',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -184,7 +197,8 @@ exports.Prisma.ModelName = {
   Profile: 'Profile',
   Property: 'Property',
   Favorite: 'Favorite',
-  Review: 'Review'
+  Review: 'Review',
+  Booking: 'Booking'
 };
 
 /**
