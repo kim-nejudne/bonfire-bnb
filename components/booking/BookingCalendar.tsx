@@ -4,7 +4,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { use, useEffect, useState } from "react";
 import { DateRange } from "react-day-picker";
 import { useProperty } from "@/utils/store";
-
+import { toast } from "sonner";
 import {
   generateDisabledDates,
   generateDateRange,
@@ -21,9 +21,21 @@ const BookingCalendar = () => {
     today: currentDate,
   });
 
+  const unavaibleDates = generateDisabledDates(blockedPeriods);
+
   useEffect(() => {
+    const selectedRange = generateDateRange(range);
+    selectedRange.some((date) => {
+      if (unavaibleDates[date]) {
+        setRange(defaultSelected);
+        toast.error("This date is not available. Please select another date.");
+        return true;
+      }
+
+      return false;
+    });
     useProperty.setState({ range });
-  }, [range]);
+  }, [range, unavaibleDates]);
 
   return (
     <Calendar
