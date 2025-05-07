@@ -1,7 +1,7 @@
 "use client";
 
 import { Calendar } from "@/components/ui/calendar";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { DateRange } from "react-day-picker";
 import { useProperty } from "@/utils/store";
 
@@ -20,6 +20,10 @@ const BookingCalendar = () => {
     bookings,
     today: currentDate,
   });
+
+  useEffect(() => {
+    useProperty.setState({ range });
+  }, [range]);
 
   return (
     <Calendar
