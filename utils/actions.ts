@@ -14,6 +14,7 @@ import { redirect } from "next/navigation";
 import { uploadImage } from "./supabase";
 import { ErrorResponse, PropertyCardProps } from "./types";
 import { Profile } from "@/prisma/generated";
+import { calculateTotals } from "./calculateTotals";
 
 const renderError = (error: unknown): ErrorResponse => {
   if (error instanceof Error) {
@@ -460,6 +461,40 @@ export const findExistingReview = async (
   });
 };
 
-export const createBookingAction = async () => {
-  return { message: "create booking" };
+export const createBookingAction = async (prevState: {
+  propertyId: string;
+  checkIn: Date;
+  checkOut: Date;
+}) => {
+  const user = await getAuthUser();
+
+  const { propertyId, checkIn, checkOut } = prevState;
+  const property = await db.property.findUnique({
+    where: { id: propertyId },
+    select: { price: true },
+  });
+  if (!property) {
+    return { message: "Property not found" };
+  }
+  const { orderTotal, totalNights } = calculateTotals({
+    checkIn,
+    checkOut,
+    price: property.price,
+  });
+
+  try {
+    const booking = await db.booking.create({
+      data: {
+        checkIn,
+        checkOut,
+        orderTotal,
+        totalNights,
+        profileId: user.id,
+        propertyId,
+      },
+    });
+  } catch (error) {
+    return renderError(error);
+  }
+  redirect("/bookings");
 };
