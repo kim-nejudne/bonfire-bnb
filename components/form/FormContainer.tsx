@@ -18,7 +18,7 @@ const FormContainer = ({
 }) => {
   const [state, formAction] = useFormState(action, initialState);
   useEffect(() => {
-    if (state.message) {
+    if (state?.message) {
       toast(state.message);
     }
   }, [state]);
